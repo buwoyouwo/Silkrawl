@@ -7,10 +7,11 @@ import android.graphics.Paint;
 import android.graphics.Paint.Cap;
 import android.graphics.Paint.Join;
 import android.graphics.Paint.Style;
-import android.opengl.Matrix;
 
 import com.buwoyouwo.silkrawl.pen.IScrawlDrawer;
 import com.buwoyouwo.silkrawl.pen.SilkPenScrawl;
+import com.buwoyouwo.util.graphics2d.shapes.Curve2D;
+import com.buwoyouwo.util.vector.Integer2;
 
 public class AndroidDrawer implements IScrawlDrawer,Serializable{
 	Canvas canvas;
@@ -66,11 +67,22 @@ public class AndroidDrawer implements IScrawlDrawer,Serializable{
 		for(SilkPenScrawl.Path path : scrawl.getPaths()){
 			//绘制每一条路径
 			paint.setARGB(path.getAlpha(), path.getColorR(), path.getColorG(), path.getColorB());
-			for(int i = 1; i < path.getNodeList().length; i++){
-				canvas.drawLine(path.getNodeList()[i-1].getX(), 
-								path.getNodeList()[i-1].getY(), 
-								path.getNodeList()[i].getX(), 
-								path.getNodeList()[i].getY(), 
+			
+//			for(int i = 1; i < path.getNodeList().length; i++){
+//				canvas.drawLine(path.getNodeList()[i-1].getX(), 
+//								path.getNodeList()[i-1].getY(), 
+//								path.getNodeList()[i].getX(), 
+//								path.getNodeList()[i].getY(), 
+//								paint);
+//			}
+			
+			Integer2[] controlPoints = path.getNodeList();
+			Integer2[] points = Curve2D.bezier(controlPoints, 0.05f);
+			for(int i = 1; i < points.length; i++){
+				canvas.drawLine(points[i-1].getX(), 
+								points[i-1].getY(), 
+								points[i].getX(), 
+								points[i].getY(), 
 								paint);
 			}
 		}

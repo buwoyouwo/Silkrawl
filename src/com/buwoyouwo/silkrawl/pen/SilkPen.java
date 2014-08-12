@@ -290,15 +290,15 @@ public class SilkPen implements IPen {
 	 */
 	public static class Config{
 		//Pen chain structure
-		int nodeNum = 10;					//node number of the pen chain, a value above 2
+		int nodeNum = 7;					//node number of the pen chain, a value above 2
 		int chainLength = 300;				//total length of pen chain
-		float elastic = 0.3f;				//A value above 0 and below 1.0f. 
+		float elastic = 0.6f;				//A value above 0 and below 1.0f. 
 											//The higher elastic coefficient is , the stronger elasticity the chain generates
 		float inertia = 0.7f;				//A value above 0 and below 1.0f.
 											//The higher inertia is , the harder to changer the velocity of nodes
 		float shrink = 0.3f;				//A value above 0 and below 1.0f.
 											//The higher shrink is , the faster the chain can shrink to its original length
-		int velocityUpperBound = 50;		//
+		int velocityUpperBound = 70;		//
 		
 		//Pen chain color
 		int colorR = 0;	//ARGB color red,	a value between 0 and 255
@@ -318,7 +318,7 @@ public class SilkPen implements IPen {
 		boolean mirrorVertical = false;		//Vertical mirror symmetric
 		boolean mirrorHorizontal = false;	//Horizontal mirror symmetric
 		int rotate = 1;						//Rotation symmetric. 1 for invalid
-		int spiral = 3;						//Spiral symmetric. 1 for invalid
+		int spiral = 1;						//Spiral symmetric. 1 for invalid
 		
 		//Getters and Setters
 		public int getNodeNum() {
